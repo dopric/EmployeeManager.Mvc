@@ -1,0 +1,66 @@
+﻿@model Employee
+@{
+    ViewData["Title"] = "Insert";
+}
+
+<h1>Insert</h1>
+
+<form asp-action="Insert" asp-controller="EmployeeManager" method="post">
+    <table border="0">
+        <tr>
+            <td><label asp-for="FirstName"></label></td>
+            <td>
+                <input asp-for="FirstName" />
+                <span asp-validation-for="FirstName"></span>
+            </td>
+        </tr>
+        <tr>
+            <td><label asp-for="LastName"></label></td>
+            <td>
+                <input asp-for="LastName" />
+                <span asp-validation-for="LastName"></span>
+            </td>
+        </tr>
+        <tr>
+            <td><label asp-for="Title"></label></td>
+            <td>
+                <input asp-for="Title" />
+                <span asp-validation-for="Title"></span>
+            </td>
+        </tr>
+        <tr>
+            <td><label asp-for="BirthDate"></label></td>
+            <td>
+                <input type="date" asp-for="BirthDate" />
+                <span asp-validation-for="BirthDate"></span>
+            </td>
+        </tr>
+        <tr>
+            <td><label asp-for="HireDate"></label></td>
+            <td>
+                <input type="date" asp-for="HireDate" />
+                <span asp-validation-for="HireDate"></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td><label asp-for="Country"></label></td>
+            <td>
+                <select asp-for="Country" asp-items="@ViewBag.Countries">
+                    <option value="Please select"></option>
+                </select>
+                <span asp-validation-for="Country"></span>
+            </td>
+        </tr>
+        <tr>
+            <td><label asp-for="Notes"></label></td>
+            <td><textarea asp-for="Notes" rows="5" cols="40"></textarea></td>
+            <span asp-validation-for="Notes"></span>
+        </tr>
+        <tr>
+            <td><button type="submit">Save</button></td>
+            <td><a asp-action="List" asp-controller="EmployeeManager">Back to list</a></td>
+        </tr>
+    </table>
+</form>
+

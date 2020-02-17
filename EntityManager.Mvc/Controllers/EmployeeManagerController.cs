@@ -27,12 +27,32 @@ namespace EntityManager.Mvc.Controllers
                                                   Text = c.Name,
                                                   Value = c.Name
                                               }).ToList();
-            ViewBag.Contries = countries;
+            ViewBag.Countries = countries;
         }
         public IActionResult List()
         {
             List<Employee> employees = _db.Employees.OrderBy(e=>e.EmployeeID).ToList();
             return View(employees);
+        }
+
+        [HttpGet]
+        public IActionResult Insert()
+        {
+            FillCountries();
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Insert(Employee employee)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Employees.Add(employee);
+                _db.SaveChanges();
+                ViewBag.Message = "Employee inserted sucessfully";
+                return RedirectToAction(nameof(List));
+            }
+            return View(employee);
         }
     }
 }
