@@ -1,12 +1,17 @@
 ﻿@model Employee
 @{
-    ViewData["Title"] = "Insert";
+    ViewData["Title"] = "Update";
 }
 
-<h1>Insert</h1>
-
-<form asp-action="Insert" asp-controller="EmployeeManager" method="post">
+<h1>Update</h1>
+<form asp-controller="EmployeeManager"
+      asp-action="Update"
+      method="post">
     <table border="0">
+        <tr>
+            <td><label asp-for="EmployeeID"></label></td>
+            <td><input  type="hidden" asp-for="EmployeeID" /></td>
+        </tr>
         <tr>
             <td><label asp-for="FirstName"></label></td>
             <td>
@@ -54,15 +59,17 @@
         </tr>
         <tr>
             <td><label asp-for="Notes"></label></td>
-            <td><textarea asp-for="Notes" rows="5" cols="40"></textarea>
+            <td>
+                <textarea asp-for="Notes" rows="5" cols="40"></textarea>
                 <span asp-validation-for="Notes"></span>
             </td>
-            
+
         </tr>
         <tr>
-            <td><button type="submit">Save</button></td>
+            <td><button type="submit">Update</button></td>
             <td><a asp-action="List" asp-controller="EmployeeManager">Back to list</a></td>
         </tr>
     </table>
+
 </form>
 

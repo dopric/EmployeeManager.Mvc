@@ -54,5 +54,41 @@ namespace EntityManager.Mvc.Controllers
             }
             return View(employee);
         }
+
+        [HttpGet]
+        [ActionName("Delete")]
+        public IActionResult ConfirmDelete(int id)
+        {
+            var employee = _db.Employees.Find(id);
+            return View(employee);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Employee employee)
+        {
+            _db.Employees.Remove(employee);
+            _db.SaveChanges();
+            return RedirectToAction(nameof(List));
+        }
+
+        public IActionResult Update(int id)
+        {
+            FillCountries();
+            var employee = _db.Employees.Find(id);
+            return View(employee);
+        }
+
+        [HttpPost]
+        public IActionResult Update(Employee model)
+        {
+            FillCountries();
+            if (ModelState.IsValid)
+            {
+                _db.Employees.Update(model);
+                _db.SaveChanges();
+                return RedirectToAction(nameof(List));
+            }
+            return View(model);
+        }
     }
 }

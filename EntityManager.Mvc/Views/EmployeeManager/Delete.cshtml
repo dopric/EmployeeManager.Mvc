@@ -1,0 +1,31 @@
+﻿@model Employee
+@{
+    ViewData["Title"] = "ConfirmDelete";
+}
+
+<h1>ConfirmDelete</h1>
+<form asp-controller="EmployeeManager" asp-action="Delete" method="post">
+    <table border="0">
+        <tr>
+            <td><label asp-for="EmployeeID"></label></td>
+            <td><input type="hidden" asp-for="EmployeeID" /></td>
+        </tr>
+        <tr>
+            <td><label asp-for="FirstName"></label></td>
+            <td><input asp-for="FirstName" /></td>
+        </tr>
+        <tr>
+            <td><label asp-for="LastName"></label></td>
+            <td><input asp-for="LastName" /></td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </td>
+            <td>
+                <a asp-controller="EmployeeManager" asp-action="List">Cancel</a>
+            </td>
+        </tr>
+    </table>
+</form>
+
